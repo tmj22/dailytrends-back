@@ -5,18 +5,19 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+app.use(bodyParser.urlencoded({
+    extended: true
+ }));
+app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/resthub');
+mongoose.connect('mongodb://localhost/dailytrends');
 const db = mongoose.connection;
 const port = process.env.PORT || 8080;
 
 app.get('/', (req, res) => res.send('Proyecto base'));
 
 app.use('/api', apiRoutes);
-app.use(bodyParser.urlencoded({
-    extended: true
- }));
-app.use(bodyParser.json());
+
 
 app.listen(port, function () {
      console.log("Servidor en marcha en el puerto " + port);

@@ -1,4 +1,7 @@
+import express from 'express';
+import feedRoutes from './routes/feed.route';
 const router = require('express').Router();
+
 
 router.get('/', function (req, res) {
     res.json({
@@ -6,5 +9,7 @@ router.get('/', function (req, res) {
        message: 'DailyTrends',
     });
 });
+
+router.use('/feed', feedRoutes);
 
 module.exports = router;

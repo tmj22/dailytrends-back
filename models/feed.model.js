@@ -23,7 +23,7 @@ const FeedSchema = mongoose.Schema({
     }
 });
 
-const Feed = module.exports = mongoose.model('feed', FeedSchema);
-module.exports.get = function (callback, limit) {
-    Feed.find(callback).limit(limit);
-}
+const feed = mongoose.model('Feed', FeedSchema);
+export default {
+  feed
+};
