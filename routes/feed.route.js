@@ -20,4 +20,9 @@ router.route('/crear')
   /** POST /api/feed/ver/:id- Ver noticia */
   .get( feedCtrl.verFeed );
 
+  router.route('/scraping')
+  /** POST /api/feed/ver/:id- Ver noticia */
+  .get( feedCtrl.scraping );
+
+
 export default router;

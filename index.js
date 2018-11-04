@@ -4,6 +4,10 @@ const apiRoutes = require("./routes")
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const request = require('request');
+
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -22,3 +26,5 @@ app.use('/api', apiRoutes);
 app.listen(port, function () {
      console.log("Servidor en marcha en el puerto " + port);
 });
+
+

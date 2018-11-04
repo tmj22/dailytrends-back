@@ -1,6 +1,9 @@
-import mongoose from 'mongoose';
 import FeedModel from '../models/feed.model';
 const Feed = FeedModel.feed;
+const cheerio = require('cheerio');
+const fs = require('fs');
+const request = require('request');
+
 
 function crearFeed(req, res) {
 
@@ -87,9 +90,26 @@ function verFeed(req, res) {
 
 }
 
+
+function scraping(req, res) {
+    request('https://www.elpais.com/', (err, response, body) => {
+        if(!err && response.statusCode === 200) {
+            let $ = cheerio.load(body);
+            $('div.articulo__interior', '#bloque_actualidad_destacadas').each(() => {
+            console.log($(this));
+            });
+            return res.status(200).send({
+                message: 'Prueba scraping'
+            });
+        } 
+    });
+}
+
+
 export default {
     crearFeed,
     modificarFeed,
     borrarFeed,
-    verFeed
+    verFeed,
+    scraping
 }
