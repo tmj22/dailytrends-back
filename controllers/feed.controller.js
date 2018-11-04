@@ -22,7 +22,74 @@ function crearFeed(req, res) {
     });
 }
 
+function modificarFeed(req, res) {
+    if (!req.params.id) {
+        return res.status(400).send({
+            message: 'No se ha encontrado la noticia'
+        });
+    }
+    Feed.findByIdAndUpdate(req.params.id, req.body, (err, feedActualizado) => {
+        if (err) {
+            return res.status(400).send({
+                message: 'Ha habido un error'
+            });
+        }
+        if (!feedActualizado) {
+            return res.status(404).send({
+                message: 'No se ha encontrado la noticia'
+            });
+        }
+        return res.json(feedActualizado);
+    });
+}
+
+
+function borrarFeed(req, res) {
+    if (!req.params.id) {
+        return res.status(400).send({
+            message: 'No se ha encontrado la noticia'
+        });
+    }
+    Feed.findByIdAndRemove(req.params.id, (err, feedBorrado) => {
+        if (err) {
+            return res.status(400).send({
+                message: 'Ha habido un error'
+            });
+        }
+        if (!feedBorrado) {
+            return res.status(404).send({
+                message: 'No se ha encontrado la noticia'
+            });
+        }
+        return res.json(feedBorrado);
+    });
+}
+
+function verFeed(req, res) {
+    if (!req.params.id) {
+        return res.status(400).send({
+            message: 'No se ha encontrado la noticia'
+        });
+    }
+    Feed.findById(req.params.id, (err, feed) => {
+        if (err) {
+            return res.status(400).send({
+                message: 'Ha habido un error'
+            });
+        }
+        if (!feed) {
+            return res.status(404).send({
+                message: 'No se ha encontrado la noticia'
+            });
+        }
+        return res.json(feed);
+    });
+
+}
 
 export default {
-    crearFeed
+    crearFeed,
+    modificarFeed,
+    borrarFeed,
+    verFeed
 }
