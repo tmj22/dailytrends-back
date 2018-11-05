@@ -1,9 +1,7 @@
-import FeedModel from '../models/feed.model';
+const FeedModel = require ('../models/feed.model');
 const Feed = FeedModel.feed;
 const cheerio = require('cheerio');
-const fs = require('fs');
 const request = require('request');
-
 
 function crearFeed(req, res) {
 
@@ -96,7 +94,7 @@ function scraping(req, res) {
         if(!err && response.statusCode === 200) {
             let $ = cheerio.load(body);
             $('div.articulo__interior', '#bloque_actualidad_destacadas').each(() => {
-            console.log($(this));
+            console.log($(this).text());
             });
             return res.status(200).send({
                 message: 'Prueba scraping'
@@ -106,7 +104,7 @@ function scraping(req, res) {
 }
 
 
-export default {
+module.exports =  {
     crearFeed,
     modificarFeed,
     borrarFeed,

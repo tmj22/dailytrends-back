@@ -1,5 +1,5 @@
-import express from 'express';
-import feedRoutes from './routes/feed.route';
+const express = require('express');
+const feedRoutes = require('./routes/feed.route');
 const router = require('express').Router();
 
 

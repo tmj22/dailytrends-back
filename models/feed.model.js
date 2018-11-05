@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-const FeedSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+const FeedSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -24,6 +24,6 @@ const FeedSchema = mongoose.Schema({
 });
 
 const feed = mongoose.model('Feed', FeedSchema);
-export default {
+module.exports = {
   feed
 };

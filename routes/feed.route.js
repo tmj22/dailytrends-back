@@ -1,5 +1,5 @@
-import express from 'express';
-import feedCtrl from '../controllers/feed.controller';
+const express = require('express');
+const feedCtrl = require('../controllers/feed.controller');
 
 const router = express.Router();
 
@@ -25,4 +25,4 @@ router.route('/crear')
   .get( feedCtrl.scraping );
 
 
-export default router;
+module.exports =  router;
